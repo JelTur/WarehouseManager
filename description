@@ -1,0 +1,14 @@
+Warehouse manager
+
+This program is designed to facilitate user to enter the required list of products into 3 types of storage available, with 3 different temperature regimes. In the course of communication between program and user the following actions will be permitted:
+-	Obtain the full list of products 
+-	Obtain the products stored under -18C, or +2+8, or +20
+-	Obtain products according to the set expiry date
+-	Add products
+-	Remove products
+-	Order products
+
+While ordering products the following assistance will be provided to the user:
+-	Information that the entered product is available and its quantity
+-	If expiration date is less than 3 days user will be warned but product will be entered into the order list
+-	If expiration date is more than 3 days product will not be entered into the order list, warning message will be provided.
