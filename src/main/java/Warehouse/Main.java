@@ -33,11 +33,28 @@ public class Main {
 
     private static void prepareDatabase(Connection connection) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(CREATE_TABLE_LOCATION);
-            statement.executeUpdate(CREATE_TABLE_PRODUCT);
-            statement.executeUpdate(CREATE_TABLE_LOCATION);
-            statement.executeUpdate(INSERT_INTO_LOCATION);
-            statement.executeUpdate(INSERT_INTO_PRODUCT);
+            ResultSet result = statement.executeQuery(SHOW_TABLES);
+            boolean locationTableExists = false;
+            boolean productTableExists = false;
+            while (result.next()) {
+                if (!locationTableExists) {
+                    locationTableExists = result.getString("TABLE_NAME").equalsIgnoreCase("location");
+                }
+                if (!productTableExists) {
+                    productTableExists = result.getString("TABLE_NAME").equalsIgnoreCase("product");
+                }
+            }
+
+            if (!locationTableExists) {
+                statement.executeUpdate(CREATE_TABLE_LOCATION);
+                statement.executeUpdate(INSERT_INTO_LOCATION);
+                System.out.println("location table created");
+            }
+            if (!productTableExists) {
+                statement.executeUpdate(CREATE_TABLE_PRODUCT);
+                statement.executeUpdate(INSERT_INTO_PRODUCT);
+                System.out.println("product table created");
+            }
         }
     }
 

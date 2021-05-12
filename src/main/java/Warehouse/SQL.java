@@ -2,6 +2,9 @@ package Warehouse;
 
 
 public class SQL {
+    public static final String SHOW_TABLES =
+            "SHOW TABLES;";
+
     public static final String INSERT_INTO_PRODUCT =
             "INSERT INTO Product" +
                     "(product,quantity,ExpDate,IDLocation) VALUES" +
@@ -43,12 +46,9 @@ public class SQL {
                     "('Shelves',20, 25);";
 
     public static final String PRINT_ALL_PRODUCTS = "SELECT(Product) FROM Product;";
-    public static final String PRINT_ALL_REFRIDGERATOR_PRODUCTS = "SELECT (w.product,l.name, w.IDLocation) FROM Product w\\n\" +\n" +
-            "            \"    JOIN Location l ON w.IDLocation = l.IDLocation;";
-    public static final String PRINT_ALL_FREEZER_PRODUCTS = "SELECT (w.product,l.name, w.IDLocation) FROM Product w\n" +
-            "    JOIN Location l ON w.IDLocation = l.IDLocation;";
-    public static final String PRINT_ALL_SHELVES_PRODUCTS = "SELECT (w.product,l.name, w.IDLocation) FROM Product w\\n\" +\n" +
-            "            \"    JOIN Location l ON w.IDLocation = l.IDLocation;";
+    public static final String PRINT_ALL_REFRIDGERATOR_PRODUCTS = "SELECT(Product) FROM Product;";
+    public static final String PRINT_ALL_FREEZER_PRODUCTS = "SELECT(Product) FROM Product;";
+    public static final String PRINT_ALL_SHELVES_PRODUCTS = "SELECT(Product) FROM Product;";
     public static final String PRINT_BY_EXPIRY_DATE = "SELECT * FROM Product\n" +
             "    WHERE ExpDate < NOW()\n" +
             "    ORDER BY ExpDate ASC;";
