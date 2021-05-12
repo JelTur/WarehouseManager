@@ -18,12 +18,17 @@
 
 
 
-CREATE TABLE Warehouse (
+CREATE TABLE Warehouse (    -- I think the name Products would be clearer. Since that is not the table of Warehouses, but rather table of products in warehouses.
                    id BIGINT auto_increment PRIMARY KEY,
                    product VARCHAR(255) NOT NULL,
                    quantity BIGINT NOT NULL,
+  --I suggest to use same convention for the columns
+  -- the previous columns are lowercase, and below columns are CamelCase
+  -- Actually in DB you will frequently find underscore separated case:
+  -- expiration_date
+  -- id_location (or maybe better location_id, since it is easier to read)
                    ExpDate date   NOT NULL,
-                   IDLocation BIGINT NOT NULL);
+                   IDLocation BIGINT NOT NULL);   -- This should be a FK (see comments below) Because each product has a specific location, not that each location has specific product (single one).
 
 INSERT INTO Warehouse(product,quantity,ExpDate,IDLocation)
  VALUES
@@ -42,9 +47,12 @@ INSERT INTO Warehouse(product,quantity,ExpDate,IDLocation)
 
 CREATE TABLE Location (
                    IDLocation BIGINT auto_increment PRIMARY KEY,
-                   Location1 VARCHAR(20) NOT NULL,
-                   Storagetemperature VARCHAR(20) NOT NULL);
-                  foreign key (Location) references Warehouse(IDLocation),
+                   Location1 VARCHAR(20) NOT NULL, -- i think this field better to call name (since it is location name, right)? anyway it is a bad idea to have location_1 (not clear what does 1 mean, though I know why you put it)
+                   Storagetemperature VARCHAR(20) NOT NULL);    -- storage_temperature ? 
+                   -- Would it be better to have  instead of Storagetemperature 2 columns (min_temperature and max_temperature both of numeric type) this way it will be a lot easier working with that 
+                  foreign key (Location) references Warehouse(IDLocation),  -- Location1 - typo??
+                  -- Anyway i think that foreitn key should be in Warehouse table, not here. Because each product in warehouse has it's own locaion,
+                  -- not that each location have one product. Meaning IDLocation in Warehouse whould be a foreign key for a Location table IDLocation
 INSERT INTO Location(Location1,Storagetemperature)
  VALUES
 ('Refrigerator','-18C'),
