@@ -20,7 +20,7 @@
 
 CREATE TABLE Products (    -- I think the name Products would be clearer. Since that is not the table of Warehouses, but rather table of products in warehouses.
                    id BIGINT auto_increment PRIMARY KEY,
-                   product VARCHAR(255) NOT NULL,
+                   product VARCHAR(255) NOT NULL,   -- yeah. I guess that is better to be product_name, same as in location.
                    quantity BIGINT NOT NULL,
  
                                                     --I suggest to use same convention for the columns
@@ -30,12 +30,10 @@ CREATE TABLE Products (    -- I think the name Products would be clearer. Since 
                                                     -- id_location (or maybe better location_id, since it is easier to read)
                    expiration_date date   NOT NULL,
                    location_id BIGINT NOT NULL,   -- This should be a FK (see comments below) Because each product has a specific location, not that each location has specific product (single one).
-FOREIGN KEY  (location_id) REFERENCES location(location_id));
+FOREIGN KEY  (location_id) REFERENCES location(location_id)); --- location(location_id) should be Location(location_id). The table name is with capital letter. It might be irrelevant in some DBs, but relevant for others. Better to get used to be precise.
                                                
 INSERT INTO Products (product,quantity,expiration_date,location_id)
  VALUES
-
-
 ('Sour_cream', 2, date '2021-05-31',1),
 ('Eggs', 10,date '2021-06-01',1),
 ('Bread', 2,date '2021-05-20',3),
@@ -65,10 +63,14 @@ INSERT INTO Location(location_id,location_name, min_temperature,max_temperature)
 
 
 SELECT(Product) FROM Products; ;     ---	Obtain the full list of products
+-- you don't need to have () . And I suggest to keep correct case as well.
 
 SELECT p.product,l.location_name, p.location_id
 FROM Products p
 JOIN location l ON p.location_id = l.location_id; --Obtain the products stored under (-6C-24), or (+2+8), or (+18+20)
+                                               -- Here you are missing where statement.
+                                               -- You will actually get here each product and its location name and id.
+                                               -- but using WHERE you can actually filter by interesting criteria, like l.min_temperature = ... 
 
 SELECT * FROM Products
 WHERE expiration_date > NOW()
@@ -82,7 +84,7 @@ DELETE FROM Products WHERE id = 1;      --Remove products
 
 
 SELECT * FROM Products                  --Order products
-WHERE quantity
+WHERE quantity    -- Something is missing here. And do you in general need a WHERE clause here? Do you need to exclude some of the products from the result?
 ORDER BY quantity ASC
 
 SELECT *
