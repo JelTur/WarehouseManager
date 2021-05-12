@@ -33,6 +33,7 @@ public class Main {
 
     private static void prepareDatabase(Connection connection) throws SQLException {
         try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(CREATE_TABLE_LOCATION);
             statement.executeUpdate(CREATE_TABLE_PRODUCT);
             statement.executeUpdate(CREATE_TABLE_LOCATION);
             statement.executeUpdate(INSERT_INTO_LOCATION);

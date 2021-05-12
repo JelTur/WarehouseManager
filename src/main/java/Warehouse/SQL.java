@@ -30,23 +30,24 @@ public class SQL {
     public static final String CREATE_TABLE_LOCATION =
             "CREATE TABLE IF NOT EXISTS Location (" +
                     "id BIGINT auto_increment PRIMARY KEY," +
-                    "Location1 VARCHAR(20) NOT NULL," +
-                    "Storagetemperature VARCHAR(20) NOT NULL" +
+                    "name VARCHAR(20) NOT NULL," +
+                    "temperature_min INT NOT NULL," +
+                    "temperature_max INT NOT NULL" +
                     ");";
 
     public static final String INSERT_INTO_LOCATION =
             "INSERT INTO Location" +
-                    "(Location1,Storagetemperature) VALUES" +
-                    "('Refrigerator','-18C')," +
-                    "('Freezer','+2 -+8C')," +
-                    "('Shelves','+20C');";
+                    "(name,temperature_min, temperature_max) VALUES" +
+                    "('Freezer',-18,-18)," +
+                    "('Refrigerator',2, 8)," +
+                    "('Shelves',20, 25);";
 
     public static final String PRINT_ALL_PRODUCTS = "SELECT(Product) FROM Product;";
-    public static final String PRINT_ALL_REFRIDGERATOR_PRODUCTS = "SELECT (w.product,l.location1, w.IDLocation) FROM Product w\\n\" +\n" +
+    public static final String PRINT_ALL_REFRIDGERATOR_PRODUCTS = "SELECT (w.product,l.name, w.IDLocation) FROM Product w\\n\" +\n" +
             "            \"    JOIN Location l ON w.IDLocation = l.IDLocation;";
-    public static final String PRINT_ALL_FREEZER_PRODUCTS = "SELECT (w.product,l.location1, w.IDLocation) FROM Product w\n" +
+    public static final String PRINT_ALL_FREEZER_PRODUCTS = "SELECT (w.product,l.name, w.IDLocation) FROM Product w\n" +
             "    JOIN Location l ON w.IDLocation = l.IDLocation;";
-    public static final String PRINT_ALL_SHELVES_PRODUCTS = "SELECT (w.product,l.location1, w.IDLocation) FROM Product w\\n\" +\n" +
+    public static final String PRINT_ALL_SHELVES_PRODUCTS = "SELECT (w.product,l.name, w.IDLocation) FROM Product w\\n\" +\n" +
             "            \"    JOIN Location l ON w.IDLocation = l.IDLocation;";
     public static final String PRINT_BY_EXPIRY_DATE = "SELECT * FROM Product\n" +
             "    WHERE ExpDate < NOW()\n" +
