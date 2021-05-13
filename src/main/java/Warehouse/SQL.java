@@ -57,7 +57,7 @@ public class SQL {
             "JOIN Location l ON p.location_id = l.id " +
             "WHERE l.location_name='Shelves'; ";
     public static final String PRINT_BY_EXPIRED_DATE = "SELECT * FROM Products\n" +
-            "    WHERE ExpDate < NOW()\n" +
+            "    WHERE ExpDate > NOW()\n" +
             "    ORDER BY ExpDate ASC;";
     public static final String ADD_PRODUCTS = "INSERT INTO Products" +
             " (product_name,quantity,ExpDate,location_id) VALUES" +
