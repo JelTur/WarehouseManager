@@ -6,10 +6,10 @@ public class SQL {
             "INSERT INTO Products" +
                     "(product_name,quantity,ExpDate,location_id) VALUES" +
                     "('Sour_cream', 2, date '2021-05-31',1)," +
-                    "('Eggs', 10,date '2021-06-01',1)," +
+                    "('Eggs', 10,date '2021-05-01',1)," +
                     "('Zucchini', 3,date '2021-05-30',1)," +
                     "('Chicken', 4,date '2021-05-31',2)," +
-                    "('Salad', 2, date '2021-06-01',1)," +
+                    "('Salad', 2, date '2021-05-01',1)," +
                     "('Ice_cream', 5, date '2021-06-20',2)," +
                     "('Pasta', 1, date '2021-06-05',3)," +
                     "('Cucumber', 2,date '2021-06-01',1)," +
@@ -56,8 +56,8 @@ public class SQL {
             "FROM Products p " +
             "JOIN Location l ON p.location_id = l.id " +
             "WHERE l.location_name='Shelves'; ";
-    public static final String PRINT_BY_EXPIRED_DATE = "SELECT * FROM Products\n" +
-            "    WHERE ExpDate > NOW()\n" +
+    public static final String PRINT_BY_EXPIRED_DATE = "SELECT * FROM Products " +
+            "    WHERE ExpDate < NOW() " +
             "    ORDER BY ExpDate ASC;";
     public static final String ADD_PRODUCTS = "INSERT INTO Products" +
             " (product_name,quantity,ExpDate,location_id) VALUES" +

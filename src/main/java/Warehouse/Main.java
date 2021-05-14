@@ -48,12 +48,10 @@ public class Main {
             if (!locationTableExists) {
                 statement.executeUpdate(CREATE_TABLE_LOCATION);
                 statement.executeUpdate(INSERT_INTO_LOCATION);
-                System.out.println("location table created");
             }
             if (!productsTableExists) {
                 statement.executeUpdate(CREATE_TABLE_PRODUCTS);
                 statement.executeUpdate(INSERT_INTO_PRODUCTS);
-                System.out.println("products table created");
             }
         }
     }
