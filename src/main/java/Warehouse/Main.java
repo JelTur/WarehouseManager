@@ -174,11 +174,13 @@ public class Main {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             System.out.print(metaData.getColumnName(i) + "\t|\t");
+            TableforPrint.printResultSet( resultSet);
         }
         System.out.println();
         while (resultSet.next()) {
             for (int i = 1; i <= columnCount; i++) {
                 System.out.print(resultSet.getString(i) + "\t|\t");
+                
             }
             System.out.println();
         }
