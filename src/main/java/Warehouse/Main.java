@@ -63,7 +63,7 @@ public class Main {
                 case PRINT_ALL_PRODUCTS:
                     printAllProducts(connection);
                     break;
-                case PRINT_ALL_REFRIDGERATOR_PRODUCTS:
+                case PRINT_ALL_REFRIGERATOR_PRODUCTS:
                     printAllRefrigeratorProducts(connection);
                     break;
                 case PRINT_ALL_FREEZER_PRODUCTS:
@@ -104,7 +104,7 @@ public class Main {
 
     private static void printAllRefrigeratorProducts(Connection connection) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            try (ResultSet resultSet = statement.executeQuery(PRINT_ALL_REFRIDGERATOR_PRODUCTS)) {
+            try (ResultSet resultSet = statement.executeQuery(PRINT_ALL_REFRIGERATOR_PRODUCTS)) {
                 printAllColumns(resultSet);
             }
         }

@@ -43,7 +43,7 @@ public class SQL {
 
 
     public static final String PRINT_ALL_PRODUCTS = "SELECT id, product_name FROM Products;";
-    public static final String PRINT_ALL_REFRIDGERATOR_PRODUCTS = "SELECT p.product_name,l.location_name " +
+    public static final String PRINT_ALL_REFRIGERATOR_PRODUCTS = "SELECT p.product_name,l.location_name " +
             "FROM Products p " +
             "JOIN Location l ON p.location_id = l.id " +
             "WHERE l.location_name='Refrigerator'; ";
