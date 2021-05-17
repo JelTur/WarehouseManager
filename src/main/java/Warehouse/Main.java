@@ -169,21 +169,8 @@ public class Main {
     }
 
 
-    private static void printAllColumns(ResultSet resultSet) throws SQLException {
-        ResultSetMetaData metaData = resultSet.getMetaData();
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            System.out.print(metaData.getColumnName(i) + "\t|\t");
-            TableforPrint.printResultSet( resultSet);
-        }
-        System.out.println();
-        while (resultSet.next()) {
-            for (int i = 1; i <= columnCount; i++) {
-                System.out.print(resultSet.getString(i) + "\t|\t");
-                
-            }
-            System.out.println();
-        }
+    private static void printAllColumns(ResultSet resultSet) {
+        TableforPrint.printResultSet(resultSet);
     }
 
     private static void addProducts(Connection connection) throws SQLException {
